@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>圣诞翻译小助手</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #ff4b4b, #ffffff);
+            color: #333;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            overflow: hidden;
+        }
+        h1 {
+            font-size: 2.5em;
+            color: #fff;
+            margin-top: 20px;
+            text-shadow: 2px 2px 4px #000;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        input[type="text"] {
+            width: 60%;
+            padding: 15px;
+            font-size: 1em;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .snowflakes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 999;
+        }
+        .snowflake {
+            position: absolute;
+            top: -50px;
+            width: 10px;
+            height: 10px;
+            background: white;
+            opacity: 0.8;
+            border-radius: 50%;
+            animation: fall 10s linear infinite;
+        }
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>圣诞翻译小助手</h1>
+    <div class="container">
+        <input type="text" id="inputText" placeholder="输入文字...">
+        <button onclick="translate()">翻译</button>
+        <p id="outputText"></p >
+    </div>
+
+    <!-- 圣诞雪花动画 -->
+    <div class="snowflakes" aria-hidden="true">
+        <div class="snowflake"></div>
+        <div class="snowflake"></div>
+        <div class="snowflake"></div>
+    </div>
+
+    <script>
+        function translate() {
+            const input = document.getElementById('inputText').value;
+            const output = document.getElementById('outputText');
+
+            // 模拟翻译为萨米语言（实际需要API替代）
+            output.innerText = "（假装翻译后的萨米语言）：" + input.split("").reverse().join("");
+        }
+
+        // 添加动态雪花
+        setInterval(() => {
+            const snowflake = document.createElement('div');
+            snowflake.className = 'snowflake';
+            snowflake.style.left = Math.random() * 100 + 'vw';
+            snowflake.style.animationDuration = Math.random() * 3 + 2 + 's';
+            document.querySelector('.snowflakes').appendChild(snowflake);
+            setTimeout(() => snowflake.remove(), 5000);
+        }, 200);
+    </script>
+</body>
+</html>
